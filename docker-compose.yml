@@ -1,0 +1,19 @@
+# 1. Set APP_ENV environment variable to proper value
+#    eg. export APP_ENV=development
+# 2. Run docker-compose build
+# 3. Run docker-compose up
+
+version: '2'
+
+services:
+
+  node:
+    image: node:6.12.2-alpine
+    build: .docker
+    ports:
+      - "8080:3000"
+    # env_file:
+      # - .docker/env/app.${APP_ENV}.env
+    volumes:
+      - .:/var/www
+    command: npm start
